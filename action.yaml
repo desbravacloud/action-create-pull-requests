@@ -1,0 +1,26 @@
+name: 'Create Pull Request'
+description: 'Automatically Creates Pull Requests'
+
+inputs:
+  origin-branch:
+    description: 'Origin branch. If blank it will assume the workflow branch.'
+    required: false
+  target-branch:
+    description: 'Target branch'
+    required: true
+  custom-title:
+    description: 'PR title'
+    required: false
+    default: 'PR created automatically.'
+  custom-body:
+    description: 'PR body message'
+    required: false
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.origin-branch }}
+    - ${{ inputs.target-branch }}
+    - ${{ inputs.custom-title }}
+    - ${{ inputs.custom-body }}

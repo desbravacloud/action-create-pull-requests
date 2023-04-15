@@ -1,4 +1,4 @@
-name: 'Create Pull Request'
+name: 'Auto Create Pull Request'
 description: 'Automatically Creates Pull Requests'
 
 inputs:

@@ -1,5 +1,9 @@
 name: 'Auto Create Pull Request'
 description: 'Automatically Creates Pull Requests'
+author: Flavio Rocha
+branding:
+  icon: 'git-pull-request'
+  color: 'blue'
 
 inputs:
   origin-branch:

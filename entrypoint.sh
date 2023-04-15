@@ -1,9 +1,5 @@
 #!/bin/bash
 
-echo "Hello $1"
-time=$(date)
-echo "time=$time" >> $GITHUB_OUTPUT
-
 # SET ORIGIN BRANCH
 ## $1 => inputs.origin-branch
 

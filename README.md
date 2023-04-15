@@ -6,16 +6,16 @@ This action automates the creation of Pull Requests from source branch to target
 ## Inputs
 
 ### `origin-branch`
-**Not-Required** The source branch name.
+**Not-Required:** The source branch name.
 
 ### `target-branch`
-**Required** The target branch name.
+**Required:** The target branch name.
 
 ### `custom-title`
-**Not-Required** The PR title. Default `"PR created automatically."`.
+**Not-Required:** The PR title. Default `"PR created automatically."`.
 
 ### `custom-body`
-**Not-Required** The PR body message.
+**Not-Required:** The PR body message.
 
 ## Example usage
 

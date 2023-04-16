@@ -21,11 +21,39 @@ inputs:
     required: false
 
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
-  args:
-    - ${{ inputs.origin-branch }}
-    - ${{ inputs.target-branch }}
-    - ${{ inputs.custom-title }}
-    - ${{ inputs.custom-body }}
-    - ${{ secrets.GITHUB_TOKEN }}
+  using: "composite"
+  steps:
+    - run: |
+        if [ -z "${{ inputs.origin-branch }}" ]; then
+          echo "branch_name=${{ github.ref_name }}" >> $GITHUB_ENV
+        else
+          echo "branch_name=${{ inputs.origin-branch }}" >> $GITHUB_ENV
+        fi
+        source $GITHUB_ENV
+        echo "Use $branch_name branch"
+      shell: bash
+    - run: |
+        curl -o check_pull_head_branch \
+        --url https://api.github.com/repos/${{ github.repository }}/pulls \
+        --header "authorization: Bearer ${{ github.token }}" \
+        --header "content-type: application/json"
+        echo "pull_head_branch=$(cat check_pull_head_branch | jq -r '.[].head | select (.ref == "${{ github.ref_name }}")|.ref')" >> $GITHUB_ENV
+      shell: bash  
+    - run: |
+        if [ -z "${{ env.pull_head_branch }}" ]; then
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/pulls \
+          --header 'authorization: Bearer ${{ github.token }}' \
+          --header 'content-type: application/json' \
+          --data '{
+            "title": "${{ inputs.custom-title }} ${{ inputs.target-branch }} < ${{ env.branch_name }}",
+            "body": "${{ inputs.custom-body }}",
+            "head": "${{ env.branch_name }}",
+            "base": "${{ inputs.target-branch }}"
+            }' \
+          --fail
+          echo 'Pull request criado!!!'
+        else 
+          echo 'Já existe um Pull Request criado da branch ${{ env.branch_name }} para branch ${{ inputs.target-branch }}'
+        fi
+      shell: bash 

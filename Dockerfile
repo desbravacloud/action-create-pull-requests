@@ -7,4 +7,4 @@ COPY entrypoint.sh /action/entrypoint.sh
 RUN chmod +x /action/entrypoint.sh && apk update && apk add bash jq
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["bash","./action/entrypoint.sh"]
+ENTRYPOINT ["bash","-c","./action/entrypoint.sh"]

@@ -52,8 +52,8 @@ runs:
             "base": "${{ inputs.target-branch }}"
             }' \
           --fail
-          echo 'Pull request criado!!!'
+          echo 'Pull request has been created!!!'
         else 
-          echo 'Já existe um Pull Request criado da branch ${{ env.branch_name }} para branch ${{ inputs.target-branch }}'
+          echo 'There is already a Pull Request created from branch ${{ env.branch_name }} to branch ${{ inputs.target-branch }}'
         fi
       shell: bash 

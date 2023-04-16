@@ -22,14 +22,14 @@ This action automates the creation of Pull Requests from source branch to target
 Simple usage:
 
 ```yaml
-uses: actions/action-create-pull-requests@v1
+uses: desbravacloud/action-create-pull-requests@v1
 with:
   target-branch: 'main'
 ```
 
 Full usage:
 ```yaml
-uses: actions/action-create-pull-requests@v1
+uses: desbravacloud/action-create-pull-requests@v1
 with:
   origin-branch: 'develop'
   target-branch: 'main'

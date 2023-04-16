@@ -4,7 +4,7 @@ FROM alpine:3.10
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /action/entrypoint.sh
 
-RUN chmod +x /action/entrypoint.sh && apk update && apk add bash jq
+RUN chmod +x /action/entrypoint.sh && apk update && apk add jq
 
 # Code file to execute when the docker container starts up (`entrypoint.sh`)
-ENTRYPOINT ["bash","-c","./action/entrypoint.sh"]
+ENTRYPOINT ["sh","/action/entrypoint.sh"]

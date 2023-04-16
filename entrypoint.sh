@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # SET ORIGIN BRANCH
 ## $1 => inputs.origin-branch

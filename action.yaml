@@ -28,6 +28,4 @@ runs:
     - ${{ inputs.target-branch }}
     - ${{ inputs.custom-title }}
     - ${{ inputs.custom-body }}
-    - ${{ github.ref_name }}
-    - ${{ github.repository }}
-    - ${{ github.token }}
+    - ${{ secrets.GITHUB_TOKEN }}
